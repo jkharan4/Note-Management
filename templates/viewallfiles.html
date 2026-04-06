@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View All Files</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .topbar {
+            background: #1e1e1e;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .brand {
+            color: #1db954;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logout {
+            color: #1db954;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            padding: 30px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1db954;
+            margin-bottom: 25px;
+        }
+
+        .table-container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            overflow-x: auto;
+        }
+
+        .notes-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .notes-table th {
+            background: #2a2a2a;
+            color: #1db954;
+            padding: 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .notes-table td {
+            padding: 12px;
+            font-size: 13px;
+            color: #b3b3b3;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .table-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .table-btn.view {
+            background: #2a2a2a;
+            color: #ffffff;
+        }
+
+        .table-btn.download {
+            background: #1db954;
+            color: #000;
+        }
+
+        .table-btn.delete {
+            background: #ff4d4d;
+            color: #000;
+        }
+
+        .table-btn:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">SNM</div>
+    <a href="{{ url_for('dashboard') }}" class="logout">Back to Dashboard</a>
+</header>
+
+<main class="main">
+    <h2 class="page-title">All Files</h2>
+
+    <div class="table-container">
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>File ID</th>
+                    <th>File Name</th>
+                    <th>Uploaded At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if filesdata %}
+                {% for file in filesdata %}
+                <tr>
+                    <td>{{ file[0] }}</td>
+                    <td>{{ file[1] }}</td>
+                    <td>{{ file[2] }}</td>
+                    <td>
+                        <a href="{{ url_for('viewfile', fid=file[0]) }}" class="table-btn view">
+                            View
+                        </a>
+
+                        <a href="{{ url_for('downloadfile', fid=file[0]) }}" class="table-btn download">
+                            Download
+                        </a>
+
+                        <a href="{{ url_for('deletefile', fid=file[0]) }}" class="table-btn delete"
+                           onclick="return confirm('Delete this file?')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align:center; color:#b3b3b3;">
+                        No files uploaded
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+</body>
+</html>

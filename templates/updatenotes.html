@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Note | Note Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1db954;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #b3b3b3;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            color: #b3b3b3;
+            font-size: 13px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: #2a2a2a;
+            color: #ffffff;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: none;
+            height: 90px; /* 🔽 reduced height */
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: #1db954;
+            color: #000;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1ed760;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .back-link a {
+            color: #1db954;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Update Note</h2>
+        <div class="subtitle">
+            Modify your saved note
+        </div>
+
+        <form method="POST">
+            <label>Title</label>
+            <input type="text" name="title" value="{{ note[1] }}" required>
+
+            <label>Content</label>
+            <textarea name="content" required>{{ note[2] }}</textarea>
+
+            <button type="submit">Update Note</button>
+        </form>
+
+        <div class="back-link">
+            <a href="{{ url_for('viewnotes') }}">← Back to Notes</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Notes</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .topbar {
+            background: #1e1e1e;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .brand {
+            color: #1db954;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logout {
+            color: #1db954;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            padding: 30px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1db954;
+            margin-bottom: 25px;
+        }
+
+        .table-container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            overflow-x: auto;
+        }
+
+        .notes-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .notes-table th {
+            background: #2a2a2a;
+            color: #1db954;
+            padding: 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .notes-table td {
+            padding: 12px;
+            font-size: 13px;
+            color: #b3b3b3;
+            border-bottom: 1px solid #2a2a2a;
+            vertical-align: top;
+        }
+
+        .content-cell {
+            max-width: 280px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #b3b3b3;
+            padding: 20px;
+        }
+
+        .table-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .table-btn.edit {
+            background: #1db954;
+            color: #000;
+        }
+
+        .table-btn.edit:hover {
+            background: #1ed760;
+        }
+
+        .table-btn.delete {
+            background: #ff4d4d;
+            color: #000;
+        }
+
+        .table-btn.delete:hover {
+            background: #ff6666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">SNM</div>
+    <a href="{{ url_for('dashboard') }}" class="logout">Back to Dashboard</a>
+</header>
+
+<main class="main">
+    <h2 class="page-title">All Notes</h2>
+
+    <div class="table-container">
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Note ID</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if notesdata %}
+                {% for note in notesdata %}
+                <tr>
+                    <td>{{ note[0] }}</td>
+                    <td>{{ note[1] }}</td>
+                    <td class="content-cell">{{ note[2] }}</td>
+                    <td>{{ note[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('updatenotes', nid=note[0]) }}" class="table-btn edit">
+                            Edit
+                        </a>
+
+                        <a href="{{ url_for('deletenotes', nid=note[0]) }}"
+                           class="table-btn delete"
+                           onclick="return confirm('Delete this note?')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="5" class="no-data">No notes found</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+</body>
+</html>

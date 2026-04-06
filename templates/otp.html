@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification | Note Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        h2 {
+            color: #1db954;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #b3b3b3;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: #2a2a2a;
+            color: #ffffff;
+            text-align: center;
+            font-size: 16px;
+            letter-spacing: 2px;
+            box-sizing: border-box;
+        }
+
+        input::placeholder {
+            color: #aaaaaa;
+            letter-spacing: normal;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: #1db954;
+            color: #000;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background: #1ed760;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>OTP Verification</h2>
+        <div class="subtitle">
+            Enter the OTP sent to your registered email address
+        </div>
+
+        <form method="POST">
+            <input type="text" name="userotp" placeholder="Enter OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</body>
+</html>
