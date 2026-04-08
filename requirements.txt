@@ -1,0 +1,5 @@
+Flask
+gunicorn
+mysql-connector-python
+Flask-Mail
+Flask-Session
